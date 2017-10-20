@@ -5,5 +5,6 @@
 	l = log --format='%C(yellow)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	ready = rebase -i @{u}
 	aa = add --all .
+	aaa = add --all :/
 	s = status --short --branch
 	summary = show --summary --find-renames=75 --find-copies=75
