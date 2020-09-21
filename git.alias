@@ -1,10 +1,22 @@
 [alias]
-	co = checkout
-	ci = commit -a
-	stat = show --stat
-	l = log --format='%C(yellow)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	ready = rebase -i @{u}
-	aa = add --all .
-	aaa = add --all :/
-	s = status --short --branch
-	summary = show --summary --find-renames=75 --find-copies=75
+    s = status -sb # Print a short, sweet status message. Nothing you don't need
+    l = log --oneline # Print a super-compact log. Just the facts, nothing more.
+    ll = log --pretty=format:'%C(3)%h %C(15)%ad %C(5)%an%Creset%n %s' # Print a compact log with user and date.
+    stat = show --stat --pretty=raw # Print commit file stats, instead of a diff, with raw commit headers.
+    dstat = diff --stat # Print diff statistics.
+    graph = !git ll --graph # Print a slick graph.
+    dump = cat-file -p # Print a git object's contents.
+    dump-type = cat-file -t # Print a git object's type.
+
+    aa = add --all . # Stage all files in the current directory and any sub-directories.
+    aaa = add --all :/ # Stage all files anywhere in the working tree.
+    ci = commit --all # Commit all files tracked by the current repository without staging (does not commit untracked files)
+    co = checkout # Save a keyboard. Write an alias.
+
+    detach = checkout --detach HEAD # Detach HEAD from the current branch pointer. All commits/resets will not affect any branches.
+    f = fetch --prune --tags --all # Fetch and prune all remotes. Keep it clean.
+    sync = !git f && git pull --stat # Fetch, prune, and pull, all in one command.
+
+    review = !git detach && git reset --soft # Begin a detached review.
+
+    make-bundle = !git bundle create "$(git log -1 --format=%h HEAD)-$(date +%s).bundle" HEAD # create a bundle of HEAD
